@@ -1,9 +1,16 @@
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
 
-from .models import Lugar
+from .models import *
 
-class PostForm(forms.ModelForm):
+class LugarForm(forms.ModelForm):
 
     class Meta:
         model = Lugar
-        fields = ('nombre', 'descripcion', 'ubicacion', 'imagen',)
+        fields = ('nombre', 'descripcion','comuna','direccion','latitud','longitud',)
+
+class PersonaForm(UserCreationForm):
+
+    class Meta:
+        model = Persona
+        fields = ('username','password1','password2','first_name','last_name','email','rut',)

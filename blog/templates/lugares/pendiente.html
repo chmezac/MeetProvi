@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+
+    <head>
+        <link rel="stylesheet" href="{% static 'css/lugar_ver.css' %}">
+    </head>
+
+    <div class="row" id="info" >
+    </div>
+    <script src="{% static 'js/lugar_pendiente.js' %}"></script>
+{% endblock %}

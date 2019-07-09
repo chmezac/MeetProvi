@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load static %}
+    <h1>Solicitar Lugar</h1>
+
+    <form method="POST">{% csrf_token %}
+        <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre del lugar">
+            <small class="form-text text-muted">Ingresa el nombre del lugar.</small>
+        </div>
+        <div class="form-group">
+            <label for="descripcion">Descripcion</label>
+            <textarea type="text" class="form-control" id="descripcion" name="descripcion" maxlength="5000" placeholder="Descripcion del sitio"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="comuna">Comuna</label>
+            <input type="text" class="form-control" id="comuna" name="comuna" placeholder="Ingresa la comuna">
+            <small class="form-text text-muted">Ingresa la comuna en la que se encuentra el lugar</small>
+        </div>
+        <div class="form-group">
+            <label for="direccion">Dirección</label>
+            <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Direccion exacta del lugar">
+            <small class="form-text text-muted">Ingresa la direccion exacta del lugar</small>
+        </div>
+        <div class="form-group">
+            <label for="latitud">Latitud (Opcional)</label>
+            <input type="number" step="any" class="form-control" id="latitud" name="latitud">
+            <small class="form-text text-muted">Ingresa la latitud en la que se encuentra el lugar</small>
+        </div>
+        <div class="form-group">
+            <label for="longitud">Longitud (Opcional)</label>
+            <input type="number" step="any" class="form-control" id="longitud" name="longitud" >
+            <small class="form-text text-muted">Ingresa la longitud en la que se encuentra el lugar</small>
+        </div>
+        <button type="submit" class="btn btn-primary save btn btn-default">Save</button>
+    </form>
+{% endblock %}

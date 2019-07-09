@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Registro</h1>
+    <form method="POST">{% csrf_token %}
+        <div class="form-group">
+            <label for="username">Nombre de usuario</label>
+            <input type="text" class="form-control" id="username" name="username" placeholder="Nombre de usuario">
+            <small class="form-text text-muted">Requerido. 150 carácteres como máximo. Únicamente letras, dígitos y @/./+/-/_</small>
+        </div>
+        <div class="form-group">
+            <label for="password1">Contraseña</label>
+            <input type="password" class="form-control" id="password1" name="password1" placeholder="Contraseña">
+            <small class="form-text text-muted">Su contraseña no puede asemejarse tanto a su otra información personal.</small>
+            <small class="form-text text-muted">Su contraseña debe contener al menos 8 caracteres.</small>
+            <small class="form-text text-muted">Su contraseña no puede ser una clave utilizada comunmente.</small>
+            <small class="form-text text-muted">Su contraseña no puede ser completamente numérica.</small>
+        </div>
+        <div class="form-group">
+            <label for="password2">Contraseña (Confirmación) </label>
+            <input type="password" class="form-control" id="password2" name="password2" placeholder="Contraseña">
+            <small class="form-text text-muted">Confirmación de contraseña</small>
+        </div>
+        <div class="form-group">
+            <label for="first_name">Nombre</label>
+            <input type="text" class="form-control" id="first_name" name="first_name" placeholder="Intresa tu nombre">
+            <small class="form-text text-muted">Ingresa tu nombre</small>
+        </div>
+        <div class="form-group">
+            <label for="last_name">Apellidos</label>
+            <input type="text" class="form-control" id="last_name" name="last_name" placeholder="Intresa tus apellidos">
+            <small class="form-text text-muted">Ingresa tus apellidos</small>
+        </div>
+        <div class="form-group">
+            <label for="email">Dirreción de correo electrónico</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Intresa tu correo electrónico">
+            <small class="form-text text-muted">Ingresa tus correo electrónico</small>
+        </div>
+        <div class="form-group">
+            <label for="rut">Rut</label>
+            <input type="text" class="form-control" id="rut" name="rut" placeholder="Ej: 1111111K">
+            <small class="form-text text-muted">Ingresa tu rut</small>
+        </div>
+        <button type="submit" class="btn btn-primary save btn btn-default">Save</button>
+    </form>
+{% endblock %}
