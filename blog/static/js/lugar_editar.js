@@ -24,7 +24,7 @@ $(document).ready(
                             var data2 = JSON.parse(this.responseText);
                             for (i = 0; i < data2.count; i++) { 
                                 $('#tipo_lugar').append(
-                                    '<option value="'+data2.results[i].codigo+'">'+data2.results[i].nombre+'</option>'
+                                    '<option value="'+data2.results[i].url+'">'+data2.results[i].nombre+'</option>'
                                 )
                             }
 
@@ -43,77 +43,100 @@ $(document).ready(
         }
     })(),
     $('#btnsubmit').click(function(){
-        var estado, nombre, comuna, direccion, descripcion, latitud, longitud, imagen;
+        var estadotxt, nombretxt, comunatxt, direcciontxt, descripciontxt, latitudtxt, longitudtxt, tipo_lugartxt;
+        var error = []
+        var correcto = ['tipo_lugar']
         if ($('#estado').val() == 1){
             if($('#longitud').val().length > 0 && $('#latitud').val().length > 0){
                 estado = true;
             }
         }else{
-            estado = false;
+            estadotxt = false;
         }
 
         if($('#nombre').val().length > 0){
-            nombre = $('#nombre').val()
+            nombretxt = $('#nombre').val()
+            correcto.push('nombre')
         }else{
-            alert('Ingrese un nombre');
-            return;
+            error.push('nombre')
         }
+
+        tipo_lugartxt = $('#tipo_lugar').val()
+
         if($('#comuna').val().length > 0){
-            comuna = $('#comuna').val()
+            comunatxt = $('#comuna').val()
+            correcto.push('comuna')
         }else{
-            alert('Ingrese una comuna');
-            return;
+            error.push('comuna')
         }
         if($('#direccion').val().length > 0){
-            direccion = $('#direccion').val()
+            direcciontxt = $('#direccion').val()
+            correcto.push('direccion')
         }else{
-            alert('Ingrese una direccion');
-            return;
+            error.push('direccion')
         }
         if($('#descripcion').val().length > 0){
-            descripcion = $('#descripcion').val()
+            descripciontxt = $('#descripcion').val()
+            correcto.push('descripcion')
         }else{
-            alert('Ingrese una descripcion');
-            return;
+            error.push('descripcion')
         }
         if($('#latitud').val().length > 0){
-            latitud = $('#latitud').val()
+            latitudtxt = $('#latitud').val()
+            correcto.push('latitud')
         }else{
-            alert('Ingrese una latitud');
-            return;
+            error.push('latitud')
         }
         if($('#longitud').val().length > 0){
-            longitud = $('#longitud').val()
+            longitudtxt = $('#longitud').val()
+            correcto.push('longitud')
         }else{
-            alert('Ingrese una longitud');
-            return;
+            error.push('longitud')
         }
+
 
         function editar(){
-            var xhttp = new XMLHttpRequest();
-            var url = localStorage.getItem('lugar');
-            
-            var data = {
-                "estado":estado, 
-                "nombre":nombre, 
-                "comuna":comuna, 
-                "direccion":direccion, 
-                "descripcion":descripcion, 
-                "latitud":latitud, 
-                "longitud":longitud,
-            };
+            var csrftoken = Cookies.get('csrftoken');
 
-            xhttp.onreadystatechange = function() {
-                if( this.readyState == 4 && this.status == 200 ){
-                    location.reload();
-                }
-            }
+            axios({
+                method: 'PATCH',
+                url: localStorage.getItem('lugar'),
+                data: {
+                    estado: estadotxt,
+                    nombre: nombretxt,
+                    comuna: comunatxt,
+                    direccion: direcciontxt,
+                    descripcion: descripciontxt,
+                    latitud: latitudtxt,
+                    longitud: longitudtxt,
+                    tipo_lugar: tipo_lugartxt
+                },
+                headers: {"X-CSRFToken": csrftoken}
+            })
+            .then(function (response) {
+                swal("Correcto !", "Has editado correctamente el sitio","success")
+                .then((value) => {
+                    swal("Recuerda", "Debes ingresar la imagen desde el Panel de Administracion", "info")
+                    .then((value) => {
+                        window.location.replace("../pendiente/");
+                    });
+                })
+            });
 
-            xhttp.open("PATCH", url, true);
-            xhttp.setRequestHeader('Content-type','application/json; charset=utf-8');
-            xhttp.send(JSON.stringify(data));
         }
 
-        editar();
+        if (error.length == 0){
+            editar();
+        }else{
+            var texto;
+            for (i = 0; i < error.length; i++) {
+                texto = error[i]+" ";
+                $('#'+error[i]).addClass('border border-danger');
+            }
+            for (i = 0; i < correcto.length; i++) {
+                $('#'+correcto[i]).addClass('border border-success');
+            }
+            swal("Algo salió mal !", "Tienes error en los siguientes campos: "+error, "error");
+        }
     }),
 );

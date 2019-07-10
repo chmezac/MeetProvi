@@ -1,3 +1,8 @@
 $(document).ready(
-    $('#id_tipo_lugar').addClass('form-control')
+    (function(){
+        $('#id_tipo_lugar').addClass('form-control');
+    })(),
+    $('#btnsubmit').click(function(){
+        alert('asdasd');
+    })
 );

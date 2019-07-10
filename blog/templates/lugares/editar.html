@@ -1,8 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{% load static %}
-{% if request.user.is_staff %}                    
+{% load static %}                   
     <form method="POST">
         <div class="form-group">
             <label for="estado">Estado</label>
@@ -49,8 +48,4 @@
         <button type="button" class="btn btn-primary" id="btnsubmit">Editar</button>
     </form>
     <script src="{% static 'js/lugar_editar.js' %}"></script>
-
-{% else %}
-    <img src="{% static 'img/404.png' %}" alt="404 not found" class="img-fluid">
-{% endif %}
 {% endblock %}
