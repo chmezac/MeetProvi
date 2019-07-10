@@ -128,13 +128,13 @@ $(document).ready(
         if (error.length == 0){
             editar();
         }else{
-            var texto;
             for (i = 0; i < error.length; i++) {
-                texto = error[i]+" ";
                 $('#'+error[i]).addClass('border border-danger');
+                $('#'+correcto[i]).removeClass('border border-success');
             }
             for (i = 0; i < correcto.length; i++) {
                 $('#'+correcto[i]).addClass('border border-success');
+                $('#'+error[i]).removeClass('border border-danger');
             }
             swal("Algo salió mal !", "Tienes error en los siguientes campos: "+error, "error");
         }

@@ -4,7 +4,7 @@
 {% load static %}
     <h1>Solicitar Lugar</h1>
 
-    <form method="POST">{% csrf_token %}
+    <form method="POST" id="form">{% csrf_token %}
         <div class="form-group">
             <label for="nombre">Nombre</label>
             <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre del lugar">

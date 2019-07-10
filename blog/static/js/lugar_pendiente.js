@@ -11,15 +11,12 @@ $(document).ready(
                         $('#tableinfo').append(
                             '<tr>'+
                                 '<th scope="row">'+(i+1)+'</th>'+
-                                '<td><a id="nombrelink" lugar="'+data.results[i].url+'" href="../editar/">'+data.results[i].nombre+'</a></td>'+
+                                '<td>'+data.results[i].nombre+'</td>'+
                                 '<td>'+data.results[i].direccion+'</td>'+
                                 '<td>'+data.results[i].comuna+'</td>'+
+                                '<td><button type="button" class"btn btn-info" lugar="'+data.results[i].url+'" onclick="editar(this)">Edit</button></td>'+
                             '</tr>'
                         );
-
-                        $('#nombrelink').click(function(){
-                            localStorage.setItem('lugar',this.getAttribute( "lugar" ))
-                        })
                     }
                 }
             }
@@ -28,3 +25,8 @@ $(document).ready(
         xhttp.send();
     },
 );
+
+function editar(elem){
+    localStorage.setItem('lugar',$(elem).attr('lugar'))
+    location.replace('../editar/')
+}
