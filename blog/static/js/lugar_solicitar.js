@@ -3,6 +3,16 @@ $(document).ready(
         $('#id_tipo_lugar').addClass('form-control');
     })(),
     $('#btnsubmit').click(function(){
+        function validarUrl(str) {
+            var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
+              '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
+              '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
+              '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
+              '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
+              '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+            return !!pattern.test(str);
+        }
+
         var form = $('#form')
         var error = []
         var correcto = ['id_tipo_lugar']
@@ -43,6 +53,16 @@ $(document).ready(
         }else{
             correcto.push('latitud')
             correcto.push('longitud')
+        }
+
+        if($('#imagen').val().length > 0){
+            if(validarUrl($('#imagen').val())){
+                correcto.push('imagen')
+            }else{
+                error.push('imagen')
+            }
+        }else{
+            correcto.push('imagen')
         }
 
         if ( error.length == 0 ){

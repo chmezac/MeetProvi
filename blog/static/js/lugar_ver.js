@@ -20,7 +20,7 @@ $(document).ready(
                                 '</div>'+
                                 '<div>'+
                                     '<label for="descripcion"><strong>Descripcion:</strong></label>'+
-                                    '<p class="overflow-auto pinfo" style="height: 300px;">'+data.results[i].descripcion+'</p>'+
+                                    '<p class="overflow-auto pinfo" style="max-height: 300px; min-height: 100px;">'+data.results[i].descripcion+'</p>'+
                                 '</div>'+
                             '</div>'
                         );

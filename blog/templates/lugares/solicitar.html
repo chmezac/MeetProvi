@@ -2,45 +2,67 @@
 
 {% block content %}
 {% load static %}
-    <h1>Solicitar Lugar</h1>
-
-    <form method="POST" id="form">{% csrf_token %}
-        <div class="form-group">
-            <label for="nombre">Nombre</label>
-            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre del lugar">
-            <small class="form-text text-muted">Ingresa el nombre del lugar.</small>
+{% if user.is_authenticated %}
+    <div class="row featurette" style="margin-top: 50px;">
+        <div class="col-md-12 col-lg-5">
+            <h2 class="featurette-heading">Cuidemos el planeta. <span class="text-muted">Eres nuestro héroe.</span></h2>
+            <p class="lead text-justify">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum autem, consectetur minima voluptatem corporis harum, nisi vitae consequatur adipisci possimus atque et nesciunt quaerat sequi doloribus ut, cupiditate voluptatibus quam! Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nam expedita sed voluptate quidem rerum reiciendis debitis, tempore culpa eligendi dolor voluptas? A maiores nemo aliquam cupiditate recusandae, illum saepe distinctio!</p>
         </div>
-        <div class="form-group">
-            <label for="tipo_lugar">Tipo de lugar</label>
-            {{ form.tipo_lugar }}
-            <small class="form-text text-muted">Ingresa el tipo de lugar</small>
+        <div class="col-md-12 col-lg-7">
+            <img class="featurette-image img-fluid mx-auto img-fluid" alt="Imagen" src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/e47ecf5f-a64c-4478-b615-e9c4d29efe5d/d36ngr9-261e0bb2-f904-4029-909e-767dc2054e47.png?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2U0N2VjZjVmLWE2NGMtNDQ3OC1iNjE1LWU5YzRkMjllZmU1ZFwvZDM2bmdyOS0yNjFlMGJiMi1mOTA0LTQwMjktOTA5ZS03NjdkYzIwNTRlNDcucG5nIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.1ru72Kp5drVyK04pw4WycDZQz55u7kzbovBTWsK3yQA">
         </div>
-        <div class="form-group">
-            <label for="comuna">Comuna</label>
-            <input type="text" class="form-control" id="comuna" name="comuna" placeholder="Ingresa la comuna">
-            <small class="form-text text-muted">Ingresa la comuna en la que se encuentra el lugar</small>
-        </div>
-        <div class="form-group">
-            <label for="direccion">Dirección</label>
-            <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Direccion exacta del lugar">
-            <small class="form-text text-muted">Ingresa la direccion exacta del lugar</small>
-        </div>
-        <div class="form-group">
-            <label for="descripcion">Descripcion</label>
-            <textarea type="text" class="form-control" id="descripcion" name="descripcion" maxlength="5000" placeholder="Descripcion del sitio"></textarea>
-        </div>
-        <div class="form-group">
-            <label for="latitud">Latitud (Opcional)</label>
-            <input type="number" step="any" class="form-control" id="latitud" name="latitud">
-            <small class="form-text text-muted">Ingresa la latitud en la que se encuentra el lugar</small>
-        </div>
-        <div class="form-group">
-            <label for="longitud">Longitud (Opcional)</label>
-            <input type="number" step="any" class="form-control" id="longitud" name="longitud" >
-            <small class="form-text text-muted">Ingresa la longitud en la que se encuentra el lugar</small>
-        </div>
-        <button type="button" class="btn btn-primary save btn btn-default" id="btnsubmit">Save</button>
-    </form>
-
+    </div>
+        <form method="POST" id="form">{% csrf_token %}
+            <h1>Formulario</h1>
+            <div class="row">
+                <div class="col-md-12 col-lg-6">
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre del lugar">
+                        <small class="form-text text-muted">Ingresa el nombre del lugar.</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="tipo_lugar">Tipo de lugar</label>
+                        {{ form.tipo_lugar }}
+                        <small class="form-text text-muted">Ingresa el tipo de lugar</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="comuna">Comuna</label>
+                        <input type="text" class="form-control" id="comuna" name="comuna" placeholder="Ingresa la comuna">
+                        <small class="form-text text-muted">Ingresa la comuna en la que se encuentra el lugar</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="direccion">Dirección</label>
+                        <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Direccion exacta del lugar">
+                        <small class="form-text text-muted">Ingresa la direccion exacta del lugar</small>
+                    </div>
+                </div>
+                <div class="col-md-12 col-lg-6">
+                    <div class="form-group">
+                        <label for="descripcion">Descripcion</label>
+                        <textarea type="text" class="form-control" id="descripcion" name="descripcion" maxlength="5000" placeholder="Descripcion del sitio"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="latitud">Latitud (Opcional)</label>
+                        <input type="number" step="any" class="form-control" id="latitud" name="latitud">
+                        <small class="form-text text-muted">Ingresa la latitud en la que se encuentra el lugar</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="longitud">Longitud (Opcional)</label>
+                        <input type="number" step="any" class="form-control" id="longitud" name="longitud" >
+                        <small class="form-text text-muted">Ingresa la longitud en la que se encuentra el lugar</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="imagen">Imagen (Opcional)</label>
+                        <input type="text" step="any" class="form-control" id="imagen" name="imagen" >
+                        <small class="form-text text-muted">Ingresa la URL de la imagen referencial</small>
+                    </div>
+                </div>
+            </div>
+        <button type="button" class="btn btn-primary save btn btn-default" id="btnsubmit">Enviar</button>
+        </form>
     <script src="{% static 'js/lugar_solicitar.js' %}"></script>
+{% else %}
+    <img src="{% static 'img/404.png' %}" alt="404 not found" class="img-fluid">
+{% endif %}
 {% endblock %}

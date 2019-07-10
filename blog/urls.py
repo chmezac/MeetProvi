@@ -11,6 +11,7 @@ router.register(r'tipo_lugares', views.Tipo_LugarViewSet)
 
 urlpatterns = [
     path('', views.inicio, name='inicio'),
+    path('mapa/', views.mapa, name='mapa'),
     path('usuario/login/', views.login, name='login'),
     path('usuario/registro/', views.registro, name='registro'),
     path('lugar/ver/', views.lugar_ver, name='lugar_ver'),

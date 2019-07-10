@@ -45,7 +45,13 @@
             <input type="number" step="any" class="form-control" id="longitud" name="longitud" >
             <small class="form-text text-muted">Ingresa la longitud en la que se encuentra el lugar</small>
         </div>
+        <div class="form-group">
+            <label for="imagen">Longitud</label>
+            <input type="text" step="any" class="form-control" id="imagen" name="imagen" >
+            <small class="form-text text-muted">Ingresa la imagen del lugar</small>
+        </div>
         <button type="button" class="btn btn-primary" id="btnsubmit">Editar</button>
+        <button type="button" class="btn btn-danger" id="btndelete">Eliminar</button>
     </form>
     <script src="{% static 'js/lugar_editar.js' %}"></script>
 {% endblock %}

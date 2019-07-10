@@ -17,7 +17,7 @@ class Lugar(models.Model):
     latitud = models.DecimalField(max_digits=90, decimal_places=10, null=True, default=0, blank=True)
     longitud = models.DecimalField(max_digits=90, decimal_places=10, null=True, default=0, blank=True)
     estado = models.BooleanField(default=False)
-    imagen = models.ImageField(default="", blank=True)
+    imagen = models.CharField(max_length=90000, default="http://blogs.uladech.edu.pe/pastillasgerenciales/wp-content/uploads/sites/18/2016/08/error-code-18.jpeg", blank=True)
     tipo_lugar = models.ForeignKey('Tipo_Lugar', on_delete=models.CASCADE, default=1)
 
     def __str__(self):

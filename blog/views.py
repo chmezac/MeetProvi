@@ -7,6 +7,9 @@ from django.shortcuts import redirect
 def inicio(request):
     return render(request, '../templates/index.html', {})
 
+def mapa(request):
+    return render(request, '../templates/mapa.html', {})
+
 def login(request):
     return render(request, '../templates/registration/login.html', {})
 

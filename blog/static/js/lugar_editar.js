@@ -1,4 +1,5 @@
 var imagen;
+var csrftoken = Cookies.get('csrftoken');
 $(document).ready(
     (function(){
         if (localStorage.getItem('lugar')){
@@ -16,6 +17,7 @@ $(document).ready(
                     $('#descripcion').val(data.descripcion);
                     $('#latitud').val(data.latitud);
                     $('#longitud').val(data.longitud);
+                    $('#imagen').val(data.imagen);
 
                     var xhttp2 = new XMLHttpRequest(); 
                     var url2 = 'http://127.0.0.1:8000/api/tipo_lugares/';  
@@ -39,16 +41,18 @@ $(document).ready(
             xhttp.send();
         }
         else{
-            console.log('AAAAAAAAAAAAAAA');
+            window.location.replace("../pendiente/");
         }
     })(),
     $('#btnsubmit').click(function(){
-        var estadotxt, nombretxt, comunatxt, direcciontxt, descripciontxt, latitudtxt, longitudtxt, tipo_lugartxt;
+        var estadotxt, nombretxt, comunatxt, direcciontxt, descripciontxt, latitudtxt, longitudtxt, tipo_lugartxt, imagentxt;
         var error = []
         var correcto = ['tipo_lugar']
+        
+        
         if ($('#estado').val() == 1){
             if($('#longitud').val().length > 0 && $('#latitud').val().length > 0){
-                estado = true;
+                estadotxt = true;
             }
         }else{
             estadotxt = false;
@@ -94,10 +98,14 @@ $(document).ready(
             error.push('longitud')
         }
 
+        if($('#imagen').val().length > 0){
+            imagentxt = $('#imagen').val()
+            correcto.push('imagen')
+        }else{
+            error.push('imagen')
+        }
 
         function editar(){
-            var csrftoken = Cookies.get('csrftoken');
-
             axios({
                 method: 'PATCH',
                 url: localStorage.getItem('lugar'),
@@ -109,7 +117,8 @@ $(document).ready(
                     descripcion: descripciontxt,
                     latitud: latitudtxt,
                     longitud: longitudtxt,
-                    tipo_lugar: tipo_lugartxt
+                    tipo_lugar: tipo_lugartxt,
+                    imagen: imagentxt
                 },
                 headers: {"X-CSRFToken": csrftoken}
             })
@@ -139,4 +148,14 @@ $(document).ready(
             swal("Algo salió mal !", "Tienes error en los siguientes campos: "+error, "error");
         }
     }),
+    $('#btndelete').click(function(){
+        axios.delete(localStorage.getItem('lugar'), { headers: {"X-CSRFToken": csrftoken}})
+	    .then(
+            swal("Correcto !", "Has eliminado correctamente el sitio","success")
+            .then((value) => {
+                localStorage.removeItem('lugar');
+                window.location.replace("../pendiente/");
+            })
+        );
+    })
 );

@@ -7,7 +7,7 @@ class LugarForm(forms.ModelForm):
 
     class Meta:
         model = Lugar
-        fields = ('nombre', 'descripcion','comuna','direccion','latitud','longitud','tipo_lugar',)
+        fields = ('nombre', 'descripcion','comuna','direccion','latitud','longitud','tipo_lugar','imagen',)
 
 class PersonaForm(UserCreationForm):
 
