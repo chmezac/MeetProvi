@@ -8,27 +8,23 @@ $(document).ready(
                 var data = JSON.parse(this.responseText);
                 for (i = 0; i < data.count; i++) { 
                     if (!data.results[i].estado){
-                        $('#info').append(
-                            '<div class="col-sm-12 col-md-6 col-lg-3 card">'+
-                                '<h5>'+data.results[i].nombre+'</h5>'+
-                                '<img class="imginfo" src="'+data.results[i].imagen+'" alt="">'+
-                                '<div>'+
-                                    '<p><strong>Direccion: </strong><span>'+data.results[i].direccion+'</span></p>'+
-                                '</div>'+
-                                '<div>'+
-                                '<p><strong>Comuna: </strong><span>'+data.results[i].comuna+'</span></p>'+
-                                '</div>'+
-                                '<div>'+
-                                    '<label for="descripcion"><strong>Descripcion:</strong></label>'+
-                                    '<p class="overflow-auto pinfo" style="height: 300px;">'+data.results[i].descripcion+'</p>'+
-                                '</div>'+
-                            '</div>'
+                        $('#tableinfo').append(
+                            '<tr>'+
+                                '<th scope="row">'+(i+1)+'</th>'+
+                                '<td><a id="nombrelink" lugar="'+data.results[i].url+'" href="../editar/">'+data.results[i].nombre+'</a></td>'+
+                                '<td>'+data.results[i].direccion+'</td>'+
+                                '<td>'+data.results[i].comuna+'</td>'+
+                            '</tr>'
                         );
+
+                        $('#nombrelink').click(function(){
+                            localStorage.setItem('lugar',this.getAttribute( "lugar" ))
+                        })
                     }
                 }
             }
         }
         xhttp.open("GET", url, true);
         xhttp.send();
-    }
+    },
 );

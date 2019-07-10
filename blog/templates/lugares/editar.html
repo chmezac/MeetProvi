@@ -2,9 +2,15 @@
 
 {% block content %}
 {% load static %}
-    <h1>Solicitar Lugar</h1>
-
-    <form method="POST">{% csrf_token %}
+{% if request.user.is_staff %}                    
+    <form method="POST">
+        <div class="form-group">
+            <label for="estado">Estado</label>
+            <select class="form-control" id="estado">
+                <option value="1">Activado</option>
+                <option value="0">Descativado</option>
+            </select>
+        </div>
         <div class="form-group">
             <label for="nombre">Nombre</label>
             <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre del lugar">
@@ -12,7 +18,8 @@
         </div>
         <div class="form-group">
             <label for="tipo_lugar">Tipo de lugar</label>
-            {{ form.tipo_lugar }}
+            <select name="tipo_lugar" class="form-control" id="tipo_lugar">
+            </select>
             <small class="form-text text-muted">Ingresa el tipo de lugar</small>
         </div>
         <div class="form-group">
@@ -30,17 +37,20 @@
             <textarea type="text" class="form-control" id="descripcion" name="descripcion" maxlength="5000" placeholder="Descripcion del sitio"></textarea>
         </div>
         <div class="form-group">
-            <label for="latitud">Latitud (Opcional)</label>
+            <label for="latitud">Latitud</label>
             <input type="number" step="any" class="form-control" id="latitud" name="latitud">
             <small class="form-text text-muted">Ingresa la latitud en la que se encuentra el lugar</small>
         </div>
         <div class="form-group">
-            <label for="longitud">Longitud (Opcional)</label>
+            <label for="longitud">Longitud</label>
             <input type="number" step="any" class="form-control" id="longitud" name="longitud" >
             <small class="form-text text-muted">Ingresa la longitud en la que se encuentra el lugar</small>
         </div>
-        <button type="submit" class="btn btn-primary save btn btn-default">Save</button>
+        <button type="button" class="btn btn-primary" id="btnsubmit">Editar</button>
     </form>
+    <script src="{% static 'js/lugar_editar.js' %}"></script>
 
-    <script src="{% static 'js/lugar_solicitar.js' %}"></script>
+{% else %}
+    <img src="{% static 'img/404.png' %}" alt="404 not found" class="img-fluid">
+{% endif %}
 {% endblock %}

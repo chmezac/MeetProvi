@@ -1,6 +1,12 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+class Tipo_Lugar(models.Model):
+    codigo = models.AutoField(primary_key=True)
+    nombre = models.CharField(max_length=200, default="")
+
+    def __str__(self):
+        return self.nombre
 
 class Lugar(models.Model):
     codigo = models.AutoField(primary_key=True)
@@ -12,6 +18,7 @@ class Lugar(models.Model):
     longitud = models.DecimalField(max_digits=90, decimal_places=10, null=True, default=0, blank=True)
     estado = models.BooleanField(default=False)
     imagen = models.ImageField(default="", blank=True)
+    tipo_lugar = models.ForeignKey('Tipo_Lugar', on_delete=models.CASCADE, default=1)
 
     def __str__(self):
         return self.nombre

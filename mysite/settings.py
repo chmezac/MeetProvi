@@ -25,7 +25,7 @@ SECRET_KEY = '4)u)k4_nek1gj28a2a$s)*_l$^p*#t7h9739o_s@uqvvxoi5t*'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -128,7 +128,7 @@ MEDIA_URL = '/media/'
 
 REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 10
+    'PAGE_SIZE': 10,
 }
 
 CORS_ORIGIN_REGEX_WHITELIST = (

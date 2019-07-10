@@ -40,6 +40,9 @@ def lugar_solicitar(request):
 
     return render(request, '../templates/lugares/solicitar.html', {'form': form})
 
+def lugar_editar(request):
+    return render(request, '../templates/lugares/editar.html', {})
+
 #VISTAS PARA API
 from rest_framework import viewsets
 
@@ -47,3 +50,7 @@ from rest_framework import viewsets
 class LugarViewSet(viewsets.ModelViewSet):
     queryset = Lugar.objects.all()
     serializer_class = LugarSerializer
+
+class Tipo_LugarViewSet(viewsets.ModelViewSet):
+    queryset = Tipo_Lugar.objects.all()
+    serializer_class = Tipo_LugarSerializer

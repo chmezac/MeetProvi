@@ -2,12 +2,26 @@
 
 {% block content %}
 {% load static %}
-
+{% if request.user.is_staff %}  
     <head>
         <link rel="stylesheet" href="{% static 'css/lugar_ver.css' %}">
     </head>
-
-    <div class="row" id="info" >
+    <div class="row" >
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Direccion</th>
+                        <th scope="col">Comuna</th>
+                    </tr>
+                </thead>
+                <tbody id="tableinfo">
+                </tbody>
+            </table>
     </div>
     <script src="{% static 'js/lugar_pendiente.js' %}"></script>
+{% else %}
+    <img src="{% static 'img/404.png' %}" alt="404 not found" class="img-fluid">
+{% endif %}
 {% endblock %}

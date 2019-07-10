@@ -7,6 +7,7 @@ from django.conf.urls.static import static
 
 router = routers.DefaultRouter()
 router.register(r'lugares', views.LugarViewSet)
+router.register(r'tipo_lugares', views.Tipo_LugarViewSet)
 
 urlpatterns = [
     path('', views.inicio, name='inicio'),
@@ -15,6 +16,7 @@ urlpatterns = [
     path('lugar/ver/', views.lugar_ver, name='lugar_ver'),
     path('lugar/solicitar/', views.lugar_solicitar, name='lugar_solicitar'),
     path('lugar/pendiente/', views.lugar_pendiente, name='lugar_pendiente'),
+    path('lugar/editar/', views.lugar_editar, name='lugar_editar'),
     path('api/', include(router.urls)),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('', include('django.contrib.auth.urls')),
