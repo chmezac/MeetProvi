@@ -59,10 +59,11 @@
                     </div>
                 </div>
             </div>
-        <button type="button" class="btn btn-primary save btn btn-default" id="btnsubmit">Enviar</button>
+            <button type="button" class="btn btn-primary save btn btn-default" id="btnsubmit">Enviar</button>
         </form>
     <script src="{% static 'js/lugar_solicitar.js' %}"></script>
 {% else %}
     <img src="{% static 'img/404.png' %}" alt="404 not found" class="img-fluid">
+    <script src="{% static 'js/index.js' %}"></script>
 {% endif %}
 {% endblock %}

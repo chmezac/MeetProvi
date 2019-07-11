@@ -2,11 +2,28 @@
 
 {% block content %}
 {% load static %}
-    <h1>Registro</h1>
-    <form method="POST" id="form">{% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn-primary save btn btn-default">Registrar</button>
-    </form>
-
+{% if user.is_authenticated %}
+    <img src="{% static 'img/404.png' %}" alt="404 not found" class="img-fluid">
+    <script src="{% static 'js/index.js' %}"></script>
+{% else %}
+    <div class="row" style="margin-top: 20px;">
+        <div class="col-md-12 col-lg-5">
+            <h2 class="featurette-heading">Antes de registrarse.</h2>
+            <h4><span class="text-muted">Al registrarte aceptas los terminos y condiciones.</span></h4>
+            <p class="lead text-justify">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum autem, consectetur minima voluptatem corporis harum, nisi vitae consequatur adipisci possimus atque et nesciunt quaerat sequi doloribus ut, cupiditate voluptatibus quam! Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nam expedita sed voluptate quidem rerum reiciendis debitis, tempore culpa eligendi dolor voluptas? A maiores nemo aliquam cupiditate recusandae, illum saepe distinctio!</p>
+        </div>
+        <div class="col-md-12 col-lg-7">
+            <img class="featurette-image img-fluid" alt="Imagen" src="https://futurefoodtechnyc.com/wp-content/uploads/2018/10/online.png">
+        </div>
+        <div class="col-sm-12">
+            <h1>Formulario</h1>
+            <form method="POST" id="form">{% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn-primary save btn btn-default">Registrar</button>
+            </form>
+        </div>
+    </div>
+        
     <script src="{% static 'js/registro.js' %}"></script>
+{% endif %}
 {% endblock %}

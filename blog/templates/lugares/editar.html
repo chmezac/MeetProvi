@@ -1,57 +1,82 @@
 {% extends 'base.html' %}
 
 {% block content %}
-{% load static %}                  
+{% load static %}
+{% if request.user.is_staff %}  
+    <div class="row featurette" style="margin-top: 50px;">
+        <div class="col-md-12 col-lg-5">
+            <h2 class="featurette-heading">Es importante.</h2>
+            <h4><span class="text-muted">Debes confimar la latitud y longitud.</span></h4>
+            <p class="lead text-justify">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Earum autem, consectetur minima voluptatem corporis harum, nisi vitae consequatur adipisci possimus atque et nesciunt quaerat sequi doloribus ut, cupiditate voluptatibus quam! Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nam expedita sed voluptate quidem rerum reiciendis debitis, tempore culpa eligendi dolor voluptas? A maiores nemo aliquam cupiditate recusandae, illum saepe distinctio!</p>
+        </div>
+        <div class="col-md-12 col-lg-7">
+            <img class="featurette-image img-fluid" alt="Imagen" src="https://www.greymatterrecruitment.co.uk/wp-content/uploads/2015/07/brain-icon.png">
+        </div>
+    </div>                
     <form method="POST">
-        <div class="form-group">
-            <label for="estado">Estado</label>
-            <select class="form-control" id="estado">
-                <option value="1">Activado</option>
-                <option value="0">Descativado</option>
-            </select>
+        <h1>Formulario</h1>
+        <div class="row">
+            <div class="col-md-12 col-lg-6">
+                <div class="form-group">
+                    <label for="estado">Estado</label>
+                    <select class="form-control" id="estado">
+                        <option value="1">Activado</option>
+                        <option value="0">Descativado</option>
+                    </select>
+                    <small class="form-text text-muted">Ingresa el estado actual.</small>
+                </div>
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre del lugar">
+                    <small class="form-text text-muted">Ingresa el nombre del lugar.</small>
+                </div>
+                <div class="form-group">
+                    <label for="tipo_lugar">Tipo de lugar</label>
+                    <select name="tipo_lugar" class="form-control" id="tipo_lugar">
+                    </select>
+                    <small class="form-text text-muted">Ingresa el tipo de lugar</small>
+                </div>
+                <div class="form-group">
+                    <label for="latitud">Latitud</label>
+                    <input type="number" step="any" class="form-control" id="latitud" name="latitud">
+                    <small class="form-text text-muted">Ingresa la latitud en la que se encuentra el lugar</small>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-6">
+                <div class="form-group">
+                    <label for="comuna">Comuna</label>
+                    <input type="text" class="form-control" id="comuna" name="comuna" placeholder="Ingresa la comuna">
+                    <small class="form-text text-muted">Ingresa la comuna en la que se encuentra el lugar</small>
+                </div>
+                <div class="form-group">
+                    <label for="direccion">Dirección</label>
+                    <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Direccion exacta del lugar">
+                    <small class="form-text text-muted">Ingresa la direccion exacta del lugar</small>
+                </div>
+                <div class="form-group">
+                    <label for="imagen">Imagen</label>
+                    <input type="text" step="any" class="form-control" id="imagen" name="imagen" >
+                    <small class="form-text text-muted">Ingresa la imagen del lugar</small>
+                </div>
+                <div class="form-group">
+                    <label for="longitud">Longitud</label>
+                    <input type="number" step="any" class="form-control" id="longitud" name="longitud" >
+                    <small class="form-text text-muted">Ingresa la longitud en la que se encuentra el lugar</small>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="descripcion">Descripcion</label>
+                    <textarea type="text" class="form-control" id="descripcion" name="descripcion" maxlength="5000" placeholder="Descripcion del sitio"></textarea>
+                </div>
+            </div>
+            <button type="button" class="btn btn-primary ml-1" id="btnsubmit">Editar</button>
+            <button type="button" class="btn btn-danger ml-1" id="btndelete">Eliminar</button>
         </div>
-        <div class="form-group">
-            <label for="nombre">Nombre</label>
-            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Nombre del lugar">
-            <small class="form-text text-muted">Ingresa el nombre del lugar.</small>
-        </div>
-        <div class="form-group">
-            <label for="tipo_lugar">Tipo de lugar</label>
-            <select name="tipo_lugar" class="form-control" id="tipo_lugar">
-            </select>
-            <small class="form-text text-muted">Ingresa el tipo de lugar</small>
-        </div>
-        <div class="form-group">
-            <label for="comuna">Comuna</label>
-            <input type="text" class="form-control" id="comuna" name="comuna" placeholder="Ingresa la comuna">
-            <small class="form-text text-muted">Ingresa la comuna en la que se encuentra el lugar</small>
-        </div>
-        <div class="form-group">
-            <label for="direccion">Dirección</label>
-            <input type="text" class="form-control" id="direccion" name="direccion" placeholder="Direccion exacta del lugar">
-            <small class="form-text text-muted">Ingresa la direccion exacta del lugar</small>
-        </div>
-        <div class="form-group">
-            <label for="descripcion">Descripcion</label>
-            <textarea type="text" class="form-control" id="descripcion" name="descripcion" maxlength="5000" placeholder="Descripcion del sitio"></textarea>
-        </div>
-        <div class="form-group">
-            <label for="latitud">Latitud</label>
-            <input type="number" step="any" class="form-control" id="latitud" name="latitud">
-            <small class="form-text text-muted">Ingresa la latitud en la que se encuentra el lugar</small>
-        </div>
-        <div class="form-group">
-            <label for="longitud">Longitud</label>
-            <input type="number" step="any" class="form-control" id="longitud" name="longitud" >
-            <small class="form-text text-muted">Ingresa la longitud en la que se encuentra el lugar</small>
-        </div>
-        <div class="form-group">
-            <label for="imagen">Longitud</label>
-            <input type="text" step="any" class="form-control" id="imagen" name="imagen" >
-            <small class="form-text text-muted">Ingresa la imagen del lugar</small>
-        </div>
-        <button type="button" class="btn btn-primary" id="btnsubmit">Editar</button>
-        <button type="button" class="btn btn-danger" id="btndelete">Eliminar</button>
     </form>
     <script src="{% static 'js/lugar_editar.js' %}"></script>
+{% else %}
+    <img src="{% static 'img/404.png' %}" alt="404 not found" class="img-fluid">
+    <script src="{% static 'js/index.js' %}"></script>
+{% endif %}
 {% endblock %}

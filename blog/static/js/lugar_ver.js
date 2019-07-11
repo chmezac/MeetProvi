@@ -1,3 +1,4 @@
+localStorage.removeItem('lugar');
 $(document).ready(
     function cargar(){
         var xhttp = new XMLHttpRequest();
@@ -9,7 +10,7 @@ $(document).ready(
                 for (i = 0; i < data.count; i++) { 
                     if (data.results[i].estado){
                         $('#info').append(
-                            '<div class="col-sm-12 col-md-6 col-lg-3 card">'+
+                            '<div class="col-sm-12 col-md-6 col-lg-3" style="margin-top: 20px;">'+
                                 '<h5>'+data.results[i].nombre+'</h5>'+
                                 '<img class="imginfo" src="'+data.results[i].imagen+'" alt="">'+
                                 '<div>'+
@@ -20,7 +21,7 @@ $(document).ready(
                                 '</div>'+
                                 '<div>'+
                                     '<label for="descripcion"><strong>Descripcion:</strong></label>'+
-                                    '<p class="overflow-auto pinfo" style="max-height: 300px; min-height: 100px;">'+data.results[i].descripcion+'</p>'+
+                                    '<p class="overflow-auto pinfo text-justify" style="max-height: 300px; min-height: 100px; padding: 10px;">'+data.results[i].descripcion+'</p>'+
                                 '</div>'+
                             '</div>'
                         );

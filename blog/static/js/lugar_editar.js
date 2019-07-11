@@ -4,7 +4,7 @@ $(document).ready(
     (function(){
         if (localStorage.getItem('lugar')){
             var xhttp = new XMLHttpRequest(); 
-            var url = localStorage.getItem('lugar');  
+            var url = localStorage.getItem('lugar');
             xhttp.onreadystatechange = function() {
                 if( this.readyState == 4 && this.status == 200 ){
                     var data = JSON.parse(this.responseText);
@@ -125,8 +125,9 @@ $(document).ready(
             .then(function (response) {
                 swal("Correcto !", "Has editado correctamente el sitio","success")
                 .then((value) => {
-                    swal("Recuerda", "Debes ingresar la imagen desde el Panel de Administracion", "info")
+                    swal("Recuerda !", "Debes confirmar la latitud y longitud del lugar", "info")
                     .then((value) => {
+                        localStorage.removeItem('lugar')  
                         window.location.replace("../pendiente/");
                     });
                 })
@@ -139,11 +140,11 @@ $(document).ready(
         }else{
             for (i = 0; i < error.length; i++) {
                 $('#'+error[i]).addClass('border border-danger');
-                $('#'+correcto[i]).removeClass('border border-success');
+                $('#'+error[i]).removeClass('border-success');
             }
             for (i = 0; i < correcto.length; i++) {
                 $('#'+correcto[i]).addClass('border border-success');
-                $('#'+error[i]).removeClass('border border-danger');
+                $('#'+correcto[i]).removeClass('border-danger');
             }
             swal("Algo salió mal !", "Tienes error en los siguientes campos: "+error, "error");
         }

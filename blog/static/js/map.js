@@ -1,3 +1,4 @@
+localStorage.removeItem('lugar');
 $(document).ready(
     (function(){
         mapboxgl.accessToken = 'pk.eyJ1IjoibGlpdmUyd28iLCJhIjoiY2p4dmNzYzVjMDNsbTNtbzhibzJrOHNoOCJ9.FQrkLdm3nToP7pFYoTViWQ';

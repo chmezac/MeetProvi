@@ -1,3 +1,4 @@
+localStorage.removeItem('lugar');
 $(document).ready(
     function cargar(){
         var xhttp = new XMLHttpRequest();
@@ -6,15 +7,17 @@ $(document).ready(
         xhttp.onreadystatechange = function() {
             if( this.readyState == 4 && this.status == 200 ){
                 var data = JSON.parse(this.responseText);
+                var contador = 0;
                 for (i = 0; i < data.count; i++) { 
                     if (!data.results[i].estado){
+                        contador+=1;
                         $('#tableinfo').append(
                             '<tr>'+
-                                '<th scope="row">'+(i+1)+'</th>'+
+                                '<th scope="row">'+contador+'</th>'+
                                 '<td>'+data.results[i].nombre+'</td>'+
                                 '<td>'+data.results[i].direccion+'</td>'+
                                 '<td>'+data.results[i].comuna+'</td>'+
-                                '<td><button type="button" class"btn btn-info" lugar="'+data.results[i].url+'" onclick="editar(this)">Edit</button></td>'+
+                                '<td><button type="button" class="btn btn-info" id="btnEdit" lugar="'+data.results[i].url+'" onclick="editar(this)">Editar</button></td>'+
                             '</tr>'
                         );
                     }

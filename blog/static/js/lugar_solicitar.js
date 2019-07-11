@@ -1,3 +1,4 @@
+localStorage.removeItem('lugar');
 $(document).ready(
     (function(){
         $('#id_tipo_lugar').addClass('form-control');
